@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChinaGoods - Легендарный магазин из Китая</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1f2525;
+            color: #e8e8e8;
+            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Шапка */
+        .header {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: #2d3436;
+        }
+
+        .header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1.5s ease, transform 5s ease;
+            transform: scale(1.1);
+        }
+
+        .header img.active {
+            opacity: 0.7;
+            transform: scale(1);
+        }
+
+        .header-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .header-text h1 {
+            font-size: 4em;
+            color: #ffeb3b;
+            text-shadow: 0 0 20px rgba(255, 235, 59, 0.5);
+            animation: glow 2s infinite alternate;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .header-text p {
+            font-size: 1.8em;
+            color: #fff;
+            margin: 20px 0;
+        }
+
+        /* Секции */
+        .section {
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section:nth-child(odd) {
+            background: linear-gradient(135deg, #2d3436 0%, #1f2525 100%);
+        }
+
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, #1f2525 0%, #2d3436 100%);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 50px;
+            color: #ffeb3b;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        h2:after {
+            content: '';
+            width: 70px;
+            height: 4px;
+            background: #ffeb3b;
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 235, 59, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 235, 59, 0.3);
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 235, 59, 0.3);
+            background: rgba(255, 235, 59, 0.25);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card i {
+            font-size: 2em;
+            color: #ffeb3b;
+            margin-bottom: 15px;
+        }
+
+        /* Кнопки */
+        .cta-button, .buy-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #ffeb3b;
+            color: #1f2525;
+            text-decoration: none;
+            border-radius: 50px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .buy-button {
+            padding: 10px 25px;
+            font-size: 0.9em;
+        }
+
+        .cta-button:hover, .buy-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 235, 59, 0.5);
+        }
+
+        /* Анимации */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(255, 235, 59, 0.5); }
+            to { text-shadow: 0 0 25px rgba(255, 235, 59, 0.8); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .animate {
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .slide-in {
+            opacity: 0;
+            animation: slideIn 1s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Секция 1: Шапка -->
+    <header class="header">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" class="active">
+        <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4">
+        <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0">
+        <div class="header-text">
+            <h1>ChinaGoods ✨</h1>
+            <p>Эксклюзивные сокровища из Китая для вас! 🎁</p>
+            <a href="#" class="cta-button">Погрузиться в шопинг 🛒</a>
+        </div>
+    </header>
+
+    <!-- Секция 2: О нас -->
+    <section class="section">
+        <div class="container animate">
+            <h2>Наша история 🌟</h2>
+            <p>Мы — команда мечтателей, доставляющая вам лучшее из Китая с любовью и заботой. Каждая посылка — это магия! 🎉</p>
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" style="width: 100%; border-radius: 20px; margin-top: 30px;">
+        </div>
+    </section>
+
+    <!-- Секция 3: Преимущества -->
+    <section class="section">
+        <div class="container">
+            <h2 class="animate">Почему мы? 💛</h2>
+            <div class="feature-grid">
+                <div class="feature-card slide-in">
+                    <i class="fas fa-star"></i>
+                    <p>Безупречное качество</p>
+                </div>
+                <div class="feature-card slide-in" style="animation-delay: 0.2s">
+                    <i class="fas fa-rocket"></i>
+                    <p>Экспресс-доставка</p>
+                </div>
+                <div class="feature-card slide-in" style="animation-delay: 0.4s">
+                    <i class="fas fa-globe"></i>
+                    <p>Глобальный выбор</p>
+                </div>
+                <div class="feature-card slide-in" style="animation-delay: 0.6s">
+                    <i class="fas fa-headset"></i>
+                    <p>Поддержка 24/7</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 4: Популярные товары -->
+    <section class="section">
+        <div class="container">
+            <h2 class="animate">Наши звезды ⭐</h2>
+            <div class="feature-grid">
+                <div class="feature-card slide-in">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e">
+                    <p>Смартфон Pro X</p>
+                    <a href="#" class="buy-button">Купить 🛍️</a>
+                </div>
+                <div class="feature-card slide-in" style="animation-delay: 0.2s">
+                    <img src="https://images.unsplash.com/photo-1523275339254-cc177407245b">
+                    <p>Шелковый шарф</p>
+                    <a href="#" class="buy-button">Купить 🛍️</a>
+                </div>
+                <div class="feature-card slide-in" style="animation-delay: 0.4s">
+                    <img src="https://images.unsplash.com/photo-1525966222134-fbfa99b465fd">
+                    <p>Чайный набор</p>
+                    <a href="#" class="buy-button">Купить 🛍️</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 5: Как мы работаем -->
+    <section class="section">
+        <div class="container animate">
+            <h2>Ваш путь к покупке 🚀</h2>
+            <p>Выберите товар 🌸 → Оформите заказ 🎯 → Получите через 7-14 дней! 📦</p>
+            <img src="https://images.unsplash.com/photo-1556740738-6b4d4b4b5b4b" style="width: 100%; border-radius: 20px; margin-top: 30px;">
+            <a href="#" class="cta-button">Начать сейчас 🚚</a>
+        </div>
+    </section>
+
+    <!-- Секция 6: Отзывы -->
+    <section class="section">
+        <div class="container animate">
+            <h2>Слова наших звездочек 🌟</h2>
+            <p>"Лучший магазин! Всё пришло быстро и красиво упаковано! 💖" — Мария, Казань</p>
+            <img src="https://images.unsplash.com/photo-1534528745625-789b95f2ebfa" style="width: 100%; border-radius: 20px; margin-top: 30px;">
+        </div>
+    </section>
+
+    <!-- Секция 7: Акции -->
+    <section class="section">
+        <div class="container animate">
+            <h2>Горячие предложения 🔥</h2>
+            <p>Скидка 30% на всё до конца месяца! Не упустите! ⏳</p>
+            <img src="https://images.unsplash.com/photo-1508766917616-d22f3f1eea14" style="width: 100%; border-radius: 20px; margin-top: 30px;">
+            <a href="#" class="cta-button">Забрать скидку 🎁</a>
+        </div>
+    </section>
+
+    <!-- Секция 8: Контакты -->
+    <section class="section">
+        <div class="container animate">
+            <h2>Связь с нами 📞</h2>
+            <p><i class="fas fa-envelope"></i> Email: star@chinagoods.com</p>
+            <p><i class="fas fa-phone"></i> Телефон: +7 (999) 777-88-99</p>
+            <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176" style="width: 100%; border-radius: 20px; margin-top: 30px;">
+        </div>
+    </section>
+
+    <script>
+        // Смена изображений в шапке
+        const images = document.querySelectorAll('.header img');
+        let currentImage = 0;
+
+        function changeImage() {
+            images[currentImage].classList.remove('active');
+            currentImage = (currentImage + 1) % images.length;
+            images[currentImage].classList.add('active');
+        }
+
+        setInterval(changeImage, 3000);
+
+        // Анимация при прокрутке
+        const animateElements = document.querySelectorAll('.animate, .slide-in');
+
+        function checkScroll() {
+            animateElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (elementTop < windowHeight * 0.8) {
+                    element.style.opacity = '1';
+                    element.style.animationPlayState = 'running';
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+    </script>
+</body>
+</html>
